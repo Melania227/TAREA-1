@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ordenamientos : MonoBehaviour
 {
+
     void imprimir(int[] arrayImprimir)
     {
         for (int i = 0; i < arrayImprimir.Length; i++)
@@ -54,10 +56,10 @@ public class Ordenamientos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var temp = Time.realtimeSinceStartup;
-        int[] arrayImpr = { 3, -54, 78, -2,5,-2,8,2,9,2,9,13,964,2456,2345,3459,87654,34567,09876543,3456,789,87654,3456789,765432,45678,-23,-34567};
-        print("Time for MyExpensiveFunction: " + (Time.realtimeSinceStartup - temp));
-        //BubbleSort(arrayImpr);
+
+        /*var tiempoInicial = Time.realtimeSinceStartup;
+        "Time for MyExpensiveFunction: " + (Time.realtimeSinceStartup - tiempoInicial)";
+        BubbleSort(arrayImpr);*/
     }
 
     // Update is called once per frame
