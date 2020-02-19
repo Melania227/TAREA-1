@@ -56,7 +56,7 @@ public class Ordenamientos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       // print("Gatito");
         /*var tiempoInicial = Time.realtimeSinceStartup;
         "Time for MyExpensiveFunction: " + (Time.realtimeSinceStartup - tiempoInicial)";
         BubbleSort(arrayImpr);*/

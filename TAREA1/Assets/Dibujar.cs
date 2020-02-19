@@ -9,17 +9,21 @@ public class Dibujar : MonoBehaviour
 
     void imprimir(int[] arrayImprimir)
     {
+        string lista ="";
         for (int i = 0; i < arrayImprimir.Length; i++)
         {
-            print(arrayImprimir[i] + " ");
+            lista+= arrayImprimir[i] + " ";
         }
+        print(lista);
     }
 
     int[] swap(int[] arrayTemp, int iTemp, int jTemp)
     {
-        int numCambio = arrayTemp[jTemp - 1];
-        arrayTemp[jTemp - 1] = arrayTemp[jTemp];
+        int numCambio = arrayTemp[iTemp];
+        int paraImprimir = arrayTemp[jTemp];
+        arrayTemp[iTemp] = arrayTemp[jTemp];
         arrayTemp[jTemp] = numCambio;
+
         return arrayTemp;
     }
 
@@ -68,16 +72,21 @@ public class Dibujar : MonoBehaviour
         int[][] cantidadesAOrdenar = new int[10][];
         for (int i = 0; i < 10; i++)
         {
-            int[] nuevoArray = new int[(i + 1) ^ 4];
+            int largo = (int)Mathf.Pow((i + 2), 4);
+            int[] nuevoArray = new int[largo];
             for (int j = 0; j < nuevoArray.Length; j++)
             {
-                nuevoArray.SetValue(Random.Range(-200, 500), j);
+                int num = Random.Range(-200, 10000);
+                nuevoArray.SetValue(num, j);
+                //print("Nuevo numero:"+ num);
             }
+            //print("Nuevo arreglo creado, largo:" + largo+" guardado en posicion: "+i);
             cantidadesAOrdenar.SetValue(nuevoArray, i);
         }
         return cantidadesAOrdenar;
     }
 
+    //Calcula los tiempos que duran los algoritmos
     double[] sacaTiempos(int[][] arrayAOrdenar, int opcion)
     {
         double[] tiempos = new double[10]; 
@@ -85,22 +94,34 @@ public class Dibujar : MonoBehaviour
         {
             for (int i = 0; i<10; i++) 
             {
+                print("Lista numero: " + i);
                 var tiempoInicial = Time.realtimeSinceStartup;
                 BubbleSort(arrayAOrdenar[i]);
                 double tiempoTemp = Time.realtimeSinceStartup - tiempoInicial;
+                print("Lista numero: " + i +" Dura: "+tiempoTemp);
                 tiempos[i] = tiempoTemp;
             }
         }
         else 
         {
-            print("Hola gato");
+            for (int i = 0; i < 10; i++)
+            {
+                print("Lista numero: " + i);
+                var tiempoInicial = Time.realtimeSinceStartup;
+                insertSort(arrayAOrdenar[i]);
+                double tiempoTemp = Time.realtimeSinceStartup - tiempoInicial;
+                print("Lista numero: " + i + " Dura: " + tiempoTemp);
+                tiempos[i] = tiempoTemp;
+            }
         }
+
         return tiempos;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //print("Gatito");
         int[][] arrayAOrdenar = cantidadesAOrdenar();
         double[] tiemposAGraficar = sacaTiempos(arrayAOrdenar, 1);
         crearPuntos(tiemposAGraficar);
