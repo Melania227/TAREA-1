@@ -6,6 +6,8 @@ public class Dibujar : MonoBehaviour
 {
     public int x;
     public GameObject punto;
+    public Material colorAzul;
+    public Material colorVerde;
 
     void imprimir(int[] arrayImprimir)
     {
@@ -58,11 +60,14 @@ public class Dibujar : MonoBehaviour
         imprimir(array);
     }
 
-    public void crearPuntos (double[] tiempos)
+    public void crearPuntos (double[] tiempos, double[] tiempos2)
     {
         for (int i = 0; i<10; i++)
         {
-            Instantiate(punto, new Vector3(i, System.Convert.ToSingle(tiempos[i]), 0), Quaternion.identity);
+            var bolita = Instantiate(punto, new Vector3(i, System.Convert.ToSingle(tiempos[i]), 0), Quaternion.identity);
+            bolita.GetComponent<MeshRenderer>().material = colorAzul;
+            var bolita2 = Instantiate(punto, new Vector3(i, System.Convert.ToSingle(tiempos2[i]), 0), Quaternion.identity);
+            bolita2.GetComponent<MeshRenderer>().material = colorVerde;
         }
     }
 
@@ -72,11 +77,11 @@ public class Dibujar : MonoBehaviour
         int[][] cantidadesAOrdenar = new int[10][];
         for (int i = 0; i < 10; i++)
         {
-            int largo = (int)Mathf.Pow((i + 2), 4);
+            int largo = (int)Mathf.Pow((i + 3), 4);
             int[] nuevoArray = new int[largo];
             for (int j = 0; j < nuevoArray.Length; j++)
             {
-                int num = Random.Range(-200, 10000);
+                int num = Random.Range(-2000, 10000);
                 nuevoArray.SetValue(num, j);
                 //print("Nuevo numero:"+ num);
             }
@@ -121,10 +126,12 @@ public class Dibujar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //print("Gatito");
         int[][] arrayAOrdenar = cantidadesAOrdenar();
-        double[] tiemposAGraficar = sacaTiempos(arrayAOrdenar, 1);
-        crearPuntos(tiemposAGraficar);
+        int[][] arrayAOrdenar2 = (int[][])arrayAOrdenar.Clone();
+        double[] tiemposAGraficar1 = sacaTiempos(arrayAOrdenar, 1);
+        double[] tiemposAGraficar2 = sacaTiempos(arrayAOrdenar2, 2);
+        crearPuntos(tiemposAGraficar1, tiemposAGraficar2);
+        //cambiar funcion de tiempo?
     }
 
     // Update is called once per frame
