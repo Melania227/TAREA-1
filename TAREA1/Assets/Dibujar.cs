@@ -8,6 +8,7 @@ public class Dibujar : MonoBehaviour
     public GameObject punto;
     public Material colorAzul;
     public Material colorVerde;
+    public TextMesh ejesText;
 
     void imprimir(int[] arrayImprimir)
     {
@@ -66,8 +67,13 @@ public class Dibujar : MonoBehaviour
         {
             var bolita = Instantiate(punto, new Vector3(i, System.Convert.ToSingle(tiempos[i]), 0), Quaternion.identity);
             bolita.GetComponent<MeshRenderer>().material = colorAzul;
+            var ejeTiempoText = Instantiate(ejesText, new Vector3(-2, i, 0), Quaternion.identity);
+            ejeTiempoText.text = i.ToString();
             var bolita2 = Instantiate(punto, new Vector3(i, System.Convert.ToSingle(tiempos2[i]), 0), Quaternion.identity);
             bolita2.GetComponent<MeshRenderer>().material = colorVerde;
+            var ejeCantidadesText = Instantiate(ejesText, new Vector3(System.Convert.ToSingle(i -0.2), -1, 0), Quaternion.identity);
+            ejeCantidadesText.text = "  ^  " + "\n" + ((int)Mathf.Pow((i + 3), 4)).ToString();
+            ejeCantidadesText.characterSize = System.Convert.ToSingle(0.2);
         }
     }
 

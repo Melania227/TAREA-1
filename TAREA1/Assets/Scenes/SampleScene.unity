@@ -221,6 +221,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4254007067847078975, guid: d75a2d8981e057e4abc39fc7ade9b1c0,
         type: 3}
+    - target: {fileID: 1461822704375973633, guid: 3cf78c731150b534aa2991e9e0168b1a,
+        type: 3}
+      propertyPath: ejeTiempo
+      value: 
+      objectReference: {fileID: 1851501315976092533, guid: 2a228d1fd4722dd48bbbc2e97740eea8,
+        type: 3}
+    - target: {fileID: 1461822704375973633, guid: 3cf78c731150b534aa2991e9e0168b1a,
+        type: 3}
+      propertyPath: ejesText
+      value: 
+      objectReference: {fileID: 1851501315976092533, guid: 2a228d1fd4722dd48bbbc2e97740eea8,
+        type: 3}
     - target: {fileID: 4494549606646296942, guid: 3cf78c731150b534aa2991e9e0168b1a,
         type: 3}
       propertyPath: m_LocalPosition.x
